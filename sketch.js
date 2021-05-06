@@ -42,7 +42,9 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+ if(backgroundImg) {
+    background(backgroundImg);
+}
   Engine.update(engine);
   rectMode(CENTER);
   ground.display();
@@ -88,8 +90,22 @@ function mouseReleased() {
   sling.fly();
 }
 
-//function keyPressed() {
-//  if (keyCode === 32) {
-//   sling.attach(ball.body);
-//  }
-//}
+function keyPressed() {
+ if (keyCode === 32) {
+     sling.attach(ball.body);
+  }
+}
+async function getTime(){
+    var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+    var responseJSON = await response.json()
+    console.log(responseJSON)
+    var datetime = responseJSON.datetime
+    var hour = datetime.slice(10,13)
+    if(hour>=06 && hour<=19){
+       bg = "sprites/bg.png" 
+    }
+    else{
+        bg = "sprites/bg2.png"
+    }
+    backgroundImg = loadImage(bg)
+}
