@@ -9,6 +9,10 @@ var stand1, stand2;
 var box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13, box14, box15;
 var py1, py2, py3, py4, py5;
 
+function preload() {
+  getBackgroundImg();
+  backgroundImg = loadImage("images/bg.jpg");
+}
 function setup() {
   createCanvas(1300, 400);
   engine = Engine.create();
@@ -101,11 +105,11 @@ async function getTime(){
     console.log(responseJSON)
     var datetime = responseJSON.datetime
     var hour = datetime.slice(10,13)
-    if(hour>=06 && hour<=19){
-       bg = "sprites/bg.png" 
+    if(hour>=06 && hour<=18){
+       bg = "images/light.jpg" 
     }
     else{
-        bg = "sprites/bg2.png"
+        bg = "images/dark.jng"
     }
     backgroundImg = loadImage(bg)
 }
